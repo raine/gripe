@@ -1,0 +1,66 @@
+Grope
+-----
+
+__la lurid little lvimgrep__
+
+TIP: If you like Grope and want to share the W00t!, I'm grateful for
+https://www.gittip.com/bairuidahu/[tips] or
+http://of-vim-and-vigor.blogspot.com/[beverages].
+
+Grope uses the builtin +:lvimgrep+ command. If there are results, Grope opens
+the +location-list+ and highlights matches using the +hl-Search+ highlight
+group.
+
+There are several ways to use Grope:
+
+* The +<plug>GropeWord+ map which is mapped to <leader>gw by default. See +mapleader+.
+* The +:Grope+ command
+* The +Grope()+ function
+
+
+**++<plug>GropeWord++**
+
+Pressing ++<leader>gw++ will grep the _word_ under the cursor within
+the path ++**/*++
+
+
+**++:Grope++**
+
+  :Grope /search term/ [path]
+  :Grope search term [path containing wildcard]
+
+.Search Term
+
+Internally, all patterns are delimited, but Grope allows bare search terms for
+simplicity. The slash '/' is shown as a delimiter here, but many non-alphanum
+characters can be used as a delimiter (but not ^).
+
+NOTE: If the Search Term is enclosed in non-alphanum characters then the
+optional path is taken to be everything after the closing delimiter.
+
+.Path
+
+Grope uses a default path of ++**/*++ but you can override this by providing a path
+as the final argument. For Grope to recognise this as a path and not another
+search term, ensure that it includes a +wildcard+. If your path contains
+spaces, escape them with '\'.
+
+.Examples
+
+  :Grope ^function
+
+Finds all function definitions in all files. To limit it to just vim files in
+the current directory:
+
+  :Grope ^function *.vim
+
+To search all vim files in all directories:
+
+  :Grope ^function **/*.vim
+
+**++Grope()++**
+
+  call Grope("search terms [path]")
+
+The +:Grope+ command simply calls +Grope()+ with all arguments quoted inside a
+single string.
