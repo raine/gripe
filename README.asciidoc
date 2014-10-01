@@ -54,12 +54,12 @@ By adding this line to your $MYVIMRC:
 You can use the following shortcuts:
 
 * ++@++        = ++*++
-* ++@@++       = ++**/*++
+* ++@@++       = ++\**/*++
 * ++@txt++     = ++*.txt++
-* ++@@txt++    = ++**/*.txt++
-* ++@@.txt++   = ++**/*.txt++
-* ++@@[c,h]++  = ++**/*[c,h]++
-* ++@@.[c,h]++ = ++**/*.[c,h]++
+* ++@@txt++    = ++\**/*.txt++
+* ++@@.txt++   = ++\**/*.txt++
+* ++@@[c,h]++  = ++\**/*[c,h]++
+* ++@@.[c,h]++ = ++\**/*.[c,h]++
 
 If you don't like the use of '@' for this purpose:
 
