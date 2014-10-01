@@ -45,6 +45,27 @@ as the final argument. For Grope to recognise this as a path and not another
 search term, ensure that it includes a +wildcard+. If your path contains
 spaces, escape them with '\'.
 
+.Glob Shortcuts
+
+By adding this line to your $MYVIMRC:
+
+  :let g:grope_use_glob_shortcuts = 1
+
+You can use the following shortcuts:
+
+* ++@++        = ++*++
+* ++@@++       = ++**/*++
+* ++@txt++     = ++*.txt++
+* ++@@txt++    = ++**/*.txt++
+* ++@@.txt++   = ++**/*.txt++
+* ++@@[c,h]++  = ++**/*[c,h]++
+* ++@@.[c,h]++ = ++**/*.[c,h]++
+
+If you don't like the use of '@' for this purpose:
+
+  :let g:grope_glob_shortcut_char = '+'
+
+
 .Examples
 
   :Grope ^function
@@ -60,7 +81,7 @@ To search all vim files in all directories:
 
 **++Grope()++**
 
-  call Grope("search terms [path]")
+  :call Grope("search terms [path]")
 
 The +:Grope+ command simply calls +Grope()+ with all arguments quoted inside a
 single string.
