@@ -21,7 +21,7 @@ There are several ways to use Grope:
 **++<plug>GropeWord++**
 
 Pressing ++<leader>gw++ will grep the _word_ under the cursor within
-the path ++**/*++
+the path ++\**/*++
 
 
 **++:Grope++**
@@ -40,7 +40,7 @@ optional path is taken to be everything after the closing delimiter.
 
 .Path
 
-Grope uses a default path of ++**/*++ but you can override this by providing a path
+Grope uses a default path of ++\**/*++ but you can override this by providing a path
 as the final argument. For Grope to recognise this as a path and not another
 search term, ensure that it includes a +wildcard+. If your path contains
 spaces, escape them with '\'.
