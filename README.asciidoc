@@ -79,6 +79,12 @@ To search all vim files in all directories:
 
   :Grope ^function **/*.vim
 
+To search for foo and replace with bar in all txt files:
+
+   :Grope /foo/ @@txt | LLdo %s/foo/bar/g | update
+
+NOTE: `LLdo` requires https://github.com/dahu/vimple[Vimple]
+
 **++Grope()++**
 
   :call Grope("search terms [path]")
