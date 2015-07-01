@@ -9,16 +9,22 @@ http://of-vim-and-vigor.blogspot.com/[beverages].
 
 Grope lets you search your project files for strings (patterns).
 
-Grope uses the builtin +:lvimgrep+ command. If there are results, Grope opens
-the +location-list+ and highlights matches using the +hl-Search+ highlight
-group.
+Grope uses the builtin +:lvimgrep+ command internally, but:
+
+* You don't have to remember ++:lvimgrep++'s argument order
+* It highlights your search term in the results
+* It has a shortcut to search for the word under the cursor
+* It has glob shortcuts to avoid having to type things like
+  ++\**/*.c++ --> just type ++@@c++ instead
+
+If there are results, Grope opens the +location-list+ and highlights
+matches using the +hl-Search+ highlight group.
 
 There are several ways to use Grope:
 
 * The +<plug>GropeWord+ map which is mapped to <leader>gw by default. See +mapleader+.
 * The +:Grope+ command
 * The +Grope()+ function
-
 
 **++<plug>GropeWord++**
 
