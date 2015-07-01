@@ -7,6 +7,8 @@ TIP: If you like Grope and want to share the W00t!, I'm grateful for
 https://www.gittip.com/bairuidahu/[tips] or
 http://of-vim-and-vigor.blogspot.com/[beverages].
 
+Grope lets you search your project files for strings (patterns).
+
 Grope uses the builtin +:lvimgrep+ command. If there are results, Grope opens
 the +location-list+ and highlights matches using the +hl-Search+ highlight
 group.
