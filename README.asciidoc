@@ -1,15 +1,15 @@
-Grope
+Gripe
 -----
 
 __la lurid little lvimgrep__
 
-TIP: If you like Grope and want to share the W00t!, I'm grateful for
+TIP: If you like Gripe and want to share the W00t!, I'm grateful for
 https://www.gittip.com/bairuidahu/[tips] or
 http://of-vim-and-vigor.blogspot.com/[beverages].
 
-Grope lets you search your project files for strings (patterns).
+Gripe lets you search your project files for strings (patterns).
 
-Grope uses the builtin +:lvimgrep+ command internally, but:
+Gripe uses the builtin +:lvimgrep+ command internally, but:
 
 * You don't have to remember ++:lvimgrep++'s argument order
 * It highlights your search term in the results
@@ -17,29 +17,29 @@ Grope uses the builtin +:lvimgrep+ command internally, but:
 * It has glob shortcuts to avoid having to type things like
   ++\**/*.c++ --> just type ++@@c++ instead
 
-If there are results, Grope opens the +location-list+ and highlights
+If there are results, Gripe opens the +location-list+ and highlights
 matches using the +hl-Search+ highlight group.
 
-There are several ways to use Grope:
+There are several ways to use Gripe:
 
-* The +<plug>GropeWord+ map which is mapped to <leader>gw by default. See +mapleader+.
-* The +:Grope+ command
-* The +Grope()+ function
+* The +<plug>GripeWord+ map which is mapped to <leader>gw by default. See +mapleader+.
+* The +:Gripe+ command
+* The +Gripe()+ function
 
-**++<plug>GropeWord++**
+**++<plug>GripeWord++**
 
 Pressing ++<leader>gw++ will grep the _word_ under the cursor within
 the path ++\**/*++
 
 
-**++:Grope++**
+**++:Gripe++**
 
-  :Grope /search term/ [path]
-  :Grope search term [path containing wildcard]
+  :Gripe /search term/ [path]
+  :Gripe search term [path containing wildcard]
 
 .Search Term
 
-Internally, all patterns are delimited, but Grope allows bare search terms for
+Internally, all patterns are delimited, but Gripe allows bare search terms for
 simplicity. The slash '/' is shown as a delimiter here, but many non-alphanum
 characters can be used as a delimiter (but not ^).
 
@@ -48,8 +48,8 @@ optional path is taken to be everything after the closing delimiter.
 
 .Path
 
-Grope uses a default path of ++\**/*++ but you can override this by providing a path
-as the final argument. For Grope to recognise this as a path and not another
+Gripe uses a default path of ++\**/*++ but you can override this by providing a path
+as the final argument. For Gripe to recognise this as a path and not another
 search term, ensure that it includes a +wildcard+. If your path contains
 spaces, escape them with '\'.
 
@@ -57,7 +57,7 @@ spaces, escape them with '\'.
 
 By adding this line to your $MYVIMRC:
 
-  :let g:grope_use_glob_shortcuts = 1
+  :let g:gripe_use_glob_shortcuts = 1
 
 You can use the following shortcuts:
 
@@ -71,31 +71,31 @@ You can use the following shortcuts:
 
 If you don't like the use of '@' for this purpose:
 
-  :let g:grope_glob_shortcut_char = '+'
+  :let g:gripe_glob_shortcut_char = '+'
 
 
 .Examples
 
-  :Grope ^function
+  :Gripe ^function
 
 Finds all function definitions in all files. To limit it to just vim files in
 the current directory:
 
-  :Grope ^function *.vim
+  :Gripe ^function *.vim
 
 To search all vim files in all directories:
 
-  :Grope ^function **/*.vim
+  :Gripe ^function **/*.vim
 
 To search for foo and replace with bar in all txt files:
 
-   :Grope /foo/ @@txt | LLdo %s/foo/bar/g | update
+   :Gripe /foo/ @@txt | LLdo %s/foo/bar/g | update
 
 NOTE: `LLdo` requires https://github.com/dahu/vimple[Vimple]
 
-**++Grope()++**
+**++Gripe()++**
 
-  :call Grope("search terms [path]")
+  :call Gripe("search terms [path]")
 
-The +:Grope+ command simply calls +Grope()+ with all arguments quoted inside a
+The +:Gripe+ command simply calls +Gripe()+ with all arguments quoted inside a
 single string.

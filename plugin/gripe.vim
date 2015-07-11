@@ -5,15 +5,15 @@
 " 		and colouring the search term with Search highlight group.
 " Last Change:	2014-10-01
 " License:	Vim License (see :help license)
-" Location:	plugin/grope.vim
-" Website:	https://github.com/dahu/grope
+" Location:	plugin/gripe.vim
+" Website:	https://github.com/dahu/gripe
 "
-" See grope.txt for help.  This can be accessed by doing:
+" See gripe.txt for help.  This can be accessed by doing:
 "
 " :helptags ~/.vim/doc
-" :help grope
+" :help gripe
 
-let g:grope_version = '0.2'
+let g:gripe_version = '0.2'
 
 " Vimscript Setup: {{{1
 " Allow use of line continuation.
@@ -23,16 +23,16 @@ set cpo&vim
 function! s:SID()
   return matchstr(expand('<sfile>'), '<SNR>\zs\d\+\ze_SID$')
 endfun
-let grope_sid = s:SID()
+let gripe_sid = s:SID()
 
 " Global Options: {{{1
 
-if !exists('g:grope_use_glob_shortcuts')
-  let g:grope_use_glob_shortcuts = 0
+if !exists('g:gripe_use_glob_shortcuts')
+  let g:gripe_use_glob_shortcuts = 0
 endif
 
-if !exists('g:grope_glob_shortcut_char')
-  let g:grope_glob_shortcut_char = '@'
+if !exists('g:gripe_glob_shortcut_char')
+  let g:gripe_glob_shortcut_char = '@'
 endif
 
 " Private Functions: {{{1
@@ -42,10 +42,10 @@ function! s:escape(search_term)
 endfunction
 
 function! s:expand_glob_shortcuts(path)
-  return g:grope_use_glob_shortcuts ?
+  return g:gripe_use_glob_shortcuts ?
         \ substitute(a:path,
-        \   '\w\@<!' . g:grope_glob_shortcut_char
-        \   . '\(' . g:grope_glob_shortcut_char . '\)\?\(\w\)\?',
+        \   '\w\@<!' . g:gripe_glob_shortcut_char
+        \   . '\(' . g:gripe_glob_shortcut_char . '\)\?\(\w\)\?',
         \   '\="*"
         \   . (len(submatch(1)) > 0 ? "*/*" : "")
         \   . (len(submatch(2)) > 0 ? "." . submatch(2) : "")
@@ -55,7 +55,7 @@ endfunction
 
 " Public Interface: {{{1
 
-function! Grope(args)
+function! Gripe(args)
   let delim = a:args[0]
   let path = ''
   if delim !~ '[a-zA-Z_^]'
@@ -91,20 +91,20 @@ function! Grope(args)
   catch /^Vim\%((\a\+)\)\=:E480/
     redraw  " necessary to prevent internal redraw erasing these messages
     echohl Error
-    echomsg 'Grope: ' . search_term . ' not found in ' . path
+    echomsg 'Gripe: ' . search_term . ' not found in ' . path
     echohl None
   endtry
 endfunction
 
 " Maps: {{{1
-nnoremap <Plug>GropeWord :call Grope(expand("<cword>"))<CR>
+nnoremap <Plug>GripeWord :call Gripe(expand("<cword>"))<CR>
 
-if !hasmapto('<Plug>GropeWord')
-  nmap <unique><silent> <leader>gw <Plug>GropeWord
+if !hasmapto('<Plug>GripeWord')
+  nmap <unique><silent> <leader>gw <Plug>GripeWord
 endif
 
 " Commands: {{{1
-command! -bar -nargs=+ -complete=file Grope call Grope(<q-args>)
+command! -bar -nargs=+ -complete=file Gripe call Gripe(<q-args>)
 
 " Teardown: {{{1
 " reset &cpo back to users setting

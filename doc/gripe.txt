@@ -1,40 +1,40 @@
-*grope.txt*	Vim global plugin providing minimal coloured grep
+*gripe.txt*	Vim global plugin providing minimal coloured grep
 
 
 			VIM REFERENCE MANUAL	by Barry Arthur
 
 
-Help on using Grope                                                *Grope*
+Help on using Gripe                                                *Gripe*
 
- INTRODUCTION                                                *grope-intro*
+ INTRODUCTION                                                *gripe-intro*
 
-Grope uses the builtin |:lvimgrep| command. If there are results, Grope opens
+Gripe uses the builtin |:lvimgrep| command. If there are results, Gripe opens
 the |location-list| and highlights matches using the |hl-Search| highlight
 group.
 
-There are several ways to use Grope:
+There are several ways to use Gripe:
 
-* The |<plug>GropeWord| map which is mapped to <leader>gw by default. See |mapleader|.
-* The |:Grope| command
-* The |Grope()| function
+* The |<plug>GripeWord| map which is mapped to <leader>gw by default. See |mapleader|.
+* The |:Gripe| command
+* The |Gripe()| function
 
 
 ------------------------------------------------------------------------------
- <plug>GropeWord                                         *<plug>GropeWord*
+ <plug>GripeWord                                         *<plug>GripeWord*
 
 Pressing <leader>gw will grep the |word| under the cursor within the path "**/*"
 
 
 ------------------------------------------------------------------------------
- :Grope                                                           *:Grope*
+ :Gripe                                                           *:Gripe*
 >
-  :Grope /search term/ [path]
-  :Grope search term [path containing wildcard]
+  :Gripe /search term/ [path]
+  :Gripe search term [path containing wildcard]
 <
 
 Search Term~
 
-Internally, all patterns are delimited, but Grope allows bare search terms for
+Internally, all patterns are delimited, but Gripe allows bare search terms for
 simplicity. The slash '/' is shown as a delimiter here, but many non-alphanum
 characters can be used as a delimiter (but not ^).
 
@@ -43,8 +43,8 @@ optional path is taken to be everything after the closing delimiter.
 
 Path~
 
-Grope uses a default path of "**/*" but you can override this by providing a path
-as the final argument. For Grope to recognise this as a path and not another
+Gripe uses a default path of "**/*" but you can override this by providing a path
+as the final argument. For Gripe to recognise this as a path and not another
 search term, ensure that it includes a |wildcard|. If your path contains
 spaces, escape them with '\'.
 
@@ -52,7 +52,7 @@ Glob Shortcuts~
 
 By adding this line to your $MYVIMRC:
 >
-  let g:grope_use_glob_shortcuts = 1
+  let g:gripe_use_glob_shortcuts = 1
 <
 
 You can use the following shortcuts:
@@ -67,36 +67,36 @@ You can use the following shortcuts:
 
 If you don't like the use of '@' for this purpose:
 >
-  let g:grope_glob_shortcut_char = '+'
+  let g:gripe_glob_shortcut_char = '+'
 <
 
 Examples~
 
 >
-  :Grope ^function
+  :Gripe ^function
 <
 
 Finds all function definitions in all files. To limit it to just vim files in
 the current directory:
 
 >
-  :Grope ^function *.vim
+  :Gripe ^function *.vim
 <
 
 To search all vim files in all directories:
 
 >
-  :Grope ^function **/*.vim
+  :Gripe ^function **/*.vim
 <
 
 ------------------------------------------------------------------------------
- Grope()                                                         *Grope()*
+ Gripe()                                                         *Gripe()*
 
 >
-  call Grope("search terms [path]")
+  call Gripe("search terms [path]")
 <
 
-The |:Grope| command simply calls Grope() with all arguments quoted inside a
+The |:Gripe| command simply calls Gripe() with all arguments quoted inside a
 single string.
 
 Template From: https://github.com/dahu/Area-41/

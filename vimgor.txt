@@ -1,0 +1,2 @@
+gripe is <reply>Gripe greps your project. -- <leader>gw --> search your whole project for the word under the cursor :::Gripe term --> grep your whole project for /term/.  :::Gripe term **/*.c --> only search the C. :::Gripe term @@c --> a glob shortcut for **/*.c :::Gripe baz @@txt \| LLdo %s/foo/bar/g \| update  --> replace foo with bar in all txt files containing baz. -- https://github.com/dahu/gripe
+
