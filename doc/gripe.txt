@@ -44,6 +44,8 @@ There are several ways to use Gripe:
 
 Pressing <leader>gw will grep the |word| under the cursor within the path "**/*"
 
+Pressing <leader>gw in visual mode will grep the visual selection with "**/*"
+
 
 ------------------------------------------------------------------------------
  :Gripe                                                           *:Gripe*

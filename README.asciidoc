@@ -54,6 +54,9 @@ There are several ways to use Gripe:
 Pressing ++<leader>gw++ will grep the _word_ under the cursor within
 the path ++\**/*++
 
+Pressing ++<leader>gw++ in visual mode will grep the visual selection
+within ++\**/*++
+
 
 **++:Gripe++**
 

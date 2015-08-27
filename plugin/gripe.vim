@@ -1,12 +1,12 @@
 " Vim global plugin providing minimal coloured grep
-" Maintainer:	Barry Arthur <barry.arthur@gmail.com>
-" Version:	0.2
-" Description:	Uses builtin vimgrep, showing results in the location-list
-" 		and colouring the search term with Search highlight group.
-" Last Change:	2014-10-01
-" License:	Vim License (see :help license)
-" Location:	plugin/gripe.vim
-" Website:	https://github.com/dahu/gripe
+" Maintainer:   Barry Arthur <barry.arthur@gmail.com>
+" Version:      0.2
+" Description:  Uses builtin vimgrep, showing results in the location-list
+"               and colouring the search term with Search highlight group.
+" Last Change:  2014-10-01
+" License:      Vim License (see :help license)
+" Location:     plugin/gripe.vim
+" Website:      https://github.com/dahu/gripe
 "
 " See gripe.txt for help.  This can be accessed by doing:
 "
@@ -132,11 +132,26 @@ function! GripeTool(search_term, path)
   return success
 endfunction
 
+function! GripeVisual()
+  let sel_save   = &selection
+  let &selection = "inclusive"
+  let reg_save   = @@
+  silent exe "normal! gvy"
+  call Gripe(@@)
+  let &selection = sel_save
+  let @@         = reg_save
+endfunction
+
 " Maps: {{{1
-nnoremap <Plug>GripeWord :call Gripe(expand("<cword>"))<CR>
+nnoremap <Plug>GripeWord   :call Gripe(expand("<cword>"))<CR>
+xnoremap <Plug>GripeVisual :<c-u>call GripeVisual()<CR>
 
 if !hasmapto('<Plug>GripeWord')
   nmap <unique><silent> <leader>gw <Plug>GripeWord
+endif
+
+if !hasmapto('<Plug>GripeVisual')
+  xmap <unique><silent> <leader>gw <Plug>GripeVisual
 endif
 
 " Commands: {{{1
