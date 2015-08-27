@@ -8,9 +8,29 @@ Help on using Gripe                                                *Gripe*
 
  INTRODUCTION                                                *gripe-intro*
 
-Gripe uses the builtin |:lvimgrep| command. If there are results, Gripe opens
-the |location-list| and highlights matches using the |hl-Search| highlight
-group.
+Gripe uses the builtin |:lvimgrep| command unless the `g:gripe_external_tool`
+variable is set. If there are results, Gripe opens the |location-list| and
+highlights matches using the |hl-Search| highlight group.
+
+                                                     *gripe_external_tool*
+Gripe External Tool~
+
+Gripe supports the external tool, ag (silver searcher) if the internal Vim
+grep tool is too slow for your project.
+
+To use Ag: >
+  let g:gripe_external_tool = 'ag'
+<
+
+The default Ag command is: >
+  let g:gripe_ag_cmd = 'ag --nobreak --nocolor --column --nogroup --noheading'
+<
+
+By default, Gripe expects the Ag tool to produce results in the following
+format: >
+  let g:gripe_ag_format = '%f:%l:%c:%m'
+<
+
 
 There are several ways to use Gripe:
 

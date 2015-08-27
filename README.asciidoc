@@ -9,7 +9,9 @@ http://of-vim-and-vigor.blogspot.com/[beverages].
 
 Gripe lets you search your project files for strings (patterns).
 
-Gripe uses the builtin +:lvimgrep+ command internally, but:
+NOTE: You can use **Ag (Silversearcher)** with Gripe -- see __Gripe External Tool__ below.
+
+By default, Gripe uses the builtin +:lvimgrep+ command internally, and:
 
 * You don't have to remember ++:lvimgrep++'s argument order
 * It highlights your search term in the results
@@ -19,6 +21,27 @@ Gripe uses the builtin +:lvimgrep+ command internally, but:
 
 If there are results, Gripe opens the +location-list+ and highlights
 matches using the +hl-Search+ highlight group.
+
+=== Gripe External Tool
+
+Gripe supports the external tool, Ag (silver searcher) if the internal Vim
+grep tool is too slow for your project.
+
+To use Ag:
+
+  let g:gripe_external_tool = 'ag'
+
+
+The default Ag command is:
+
+  let g:gripe_ag_cmd = 'ag --nobreak --nocolor --column --nogroup --noheading'
+
+
+By default, Gripe expects the Ag tool to produce results in the following
+format:
+
+  let g:gripe_ag_format = '%f:%l:%c:%m'
+
 
 There are several ways to use Gripe:
 
