@@ -66,26 +66,26 @@ endfunction
 function! Gripe(args)
   let delim = a:args[0]
   let path = ''
-  if delim !~ '[a-zA-Z_^]'
+  if delim !~ '[a-zA-Z_^\\]'
     let search_term = matchstr(a:args, '^' . delim . '.\{-}\\\@<!' . delim)
     let path = strpart(a:args, len(search_term))
     if path =~ '^\s*\.\?\s*$'
-      let path = '**/*'
+      let path = '**'
     endif
   else
     let args = split(a:args, '\\\@<! ')
     let path = args[-1]
     if len(args) == 1
-      let path = '**/*'
+      let path = '**'
       let search_term = args[0]
     elseif path == '.'
-      let path = '**/*'
+      let path = '**'
       let search_term = join(args[0:-2])
     else
       if path =~ '[@*?\[\]]'
         let search_term = join(args[0:-2])
       else
-        let path = '**/*'
+        let path = '**'
         let search_term = join(args[0:-1])
       endif
     endif
@@ -95,6 +95,9 @@ function! Gripe(args)
   if success != 0
     lopen
     let search_term = substitute(search_term, '^^', '', '')
+    " :lgrep replaces % with current buffer, so a search for   \\% or \\\% (for lvimgrep)
+    " needs to be repaired for use with matchadd()
+    let search_term = substitute(search_term, '\\\+%', '%', 'g')
     call matchadd("Search", search_term)
   else
     redraw  " necessary to prevent internal redraw erasing these messages
@@ -109,7 +112,12 @@ function! GripeTool(search_term, path)
   if g:gripe_external_tool == ''
     " use internal lvimgrep
     try
-      silent exe 'lvimgrep /' . escape(a:search_term, '/') . '/j ' . a:path
+      if a:search_term =~ '^/.*/$'
+        let search_term = a:search_term[2:-2]
+      else
+        let search_term = a:search_term
+      endif
+      silent exe 'lvimgrep /' . escape(search_term, '/') . '/j ' . a:path
     catch /^Vim\%((\a\+)\)\=:E480/
       " success = 0
     endtry
@@ -121,7 +129,7 @@ function! GripeTool(search_term, path)
     try
       let &grepprg    = g:gripe_ag_cmd
       let &grepformat = g:gripe_ag_format
-      silent! exe 'lgrep! ' . escape(a:search_term, '|') . ' ' . escape(a:path, '|')
+      silent! exe 'lgrep! ' . shellescape(escape(a:search_term, '|')) . ' ' . escape(a:path, '|')
       redraw!
       let success = 1
     finally
