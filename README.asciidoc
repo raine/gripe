@@ -83,7 +83,7 @@ spaces, escape them with '\'.
 
 By adding this line to your $MYVIMRC:
 
-  :let g:gripe_use_glob_shortcuts = 1
+  let g:gripe_use_glob_shortcuts = 1
 
 You can use the following shortcuts:
 
